@@ -9,12 +9,24 @@ const Home = () => {
 		navigation.navigate("SettingsScreen");
 	};
 
+	const gameHandler = () => {
+		navigation.navigate("InGameScreen");
+	};
+
 	return (
 		<View>
 			<Text>Home Screen</Text>
-			<CustomButton onPress={settingsHandler}>
-				<Ionicons name="ios-settings" color="#636363" size={24} />
+			<CustomButton
+				onPress={settingsHandler}
+				style={{
+					textAlign: "right",
+					padding: 20,
+				}}
+			>
+				<Ionicons name="ios-settings" color="#636363" size={32} />
 			</CustomButton>
+
+			<CustomButton onPress={gameHandler}>Addition +</CustomButton>
 		</View>
 	);
 };
