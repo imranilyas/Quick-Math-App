@@ -9,8 +9,8 @@ const Home = () => {
 		navigation.navigate("SettingsScreen");
 	};
 
-	const gameHandler = () => {
-		navigation.navigate("InGameScreen");
+	const gameHandler = (val) => {
+		navigation.navigate("InGameScreen", { gameType: val });
 	};
 
 	return (
@@ -26,7 +26,18 @@ const Home = () => {
 				<Ionicons name="ios-settings" color="#636363" size={32} />
 			</CustomButton>
 
-			<CustomButton onPress={gameHandler}>Addition +</CustomButton>
+			<CustomButton onPress={gameHandler.bind(this, "+")}>
+				Addition +
+			</CustomButton>
+			<CustomButton onPress={gameHandler.bind(this, "-")}>
+				Subtraction +
+			</CustomButton>
+			<CustomButton onPress={gameHandler.bind(this, "*")}>
+				Multiplication +
+			</CustomButton>
+			<CustomButton onPress={gameHandler.bind(this, "/")}>
+				Division +
+			</CustomButton>
 		</View>
 	);
 };
