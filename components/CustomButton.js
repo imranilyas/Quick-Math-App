@@ -1,11 +1,11 @@
 import { Pressable, View, Text, StyleSheet } from "react-native";
 
-const CustomButton = () => {
+const CustomButton = ({ children, onPress }) => {
 	return (
 		<View>
-			<Pressable>
+			<Pressable onPress={onPress}>
 				<View>
-					<Text>Button</Text>
+					<Text>{children}</Text>
 				</View>
 			</Pressable>
 		</View>
