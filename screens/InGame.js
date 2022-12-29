@@ -1,5 +1,6 @@
-import { useRoute } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { View, Text, StyleSheet } from "react-native";
+import CustomButton from "../components/CustomButton";
 
 const InGame = () => {
 	const gameType = useRoute().params.gameType;
@@ -29,13 +30,18 @@ const InGame = () => {
 		},
 	};
 
+	const navigation = useNavigation();
+	const endGameHandler = () => {
+		navigation.navigate("EndGameScreen");
+	};
+
 	return (
 		<View>
 			<Text>
 				In-Game Screen, {expression[gameType](first, second)} and this:{" "}
 				{answer}
 			</Text>
-			<View></View>
+			<CustomButton onPress={endGameHandler}>End</CustomButton>
 		</View>
 	);
 };
