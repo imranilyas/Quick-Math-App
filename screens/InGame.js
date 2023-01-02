@@ -1,6 +1,8 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { View, Text, StyleSheet } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import CustomButton from "../components/CustomButton";
+import { incrementRound, resetRound } from "../redux/settingsSlice";
 
 const InGame = () => {
 	const gameType = useRoute().params.gameType;
@@ -30,9 +32,21 @@ const InGame = () => {
 		},
 	};
 
+	const round = useSelector((state) => state.settings.roundProgress);
+	const endRound = useSelector((state) => state.settings.rounds);
+
 	const navigation = useNavigation();
+	const dispatch = useDispatch();
+
 	const endGameHandler = () => {
-		navigation.navigate("EndGameScreen");
+		console.log(round);
+		if (round < endRound) {
+			console.log("Nobody move");
+			dispatch(incrementRound());
+		} else {
+			dispatch(resetRound());
+			navigation.navigate("EndGameScreen");
+		}
 	};
 
 	return (
