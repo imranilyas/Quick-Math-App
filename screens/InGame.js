@@ -1,4 +1,5 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
+import { useEffect, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import CustomButton from "../components/CustomButton";
@@ -7,27 +8,29 @@ import { incrementRound, resetRound } from "../redux/settingsSlice";
 const InGame = () => {
 	const gameType = useRoute().params.gameType;
 
-	const first = Math.floor(Math.random() * 10) + 1;
-	const second = Math.floor(Math.random() * 10) + 1;
-	let answer = 0;
+	const [btn, setBtn] = useState(false);
+	const [express, setExpress] = useState("");
+	const [ans, setAnswer] = useState(0);
 
 	const expression = {
 		"+": function (x, y) {
-			answer = x + y;
+			setAnswer(x + y);
+			setExpress(`${x} + ${y}`);
 			return `${x} + ${y}`;
 		},
 		"-": function (x, y) {
-			answer = x - y;
-
+			setAnswer(x - y);
+			setExpress(`${x} - ${y}`);
 			return `${x} - ${y}`;
 		},
 		"*": function (x, y) {
-			answer = x * y;
-
+			setAnswer(x * y);
+			setExpress(`${x} x ${y}`);
 			return `${x} x ${y}`;
 		},
 		"/": function (x, y) {
-			answer = x / y;
+			setAnswer(x / y);
+			setExpress(`${x} / ${y}`);
 			return `${x} / ${y}`;
 		},
 	};
@@ -37,6 +40,11 @@ const InGame = () => {
 
 	const navigation = useNavigation();
 	const dispatch = useDispatch();
+
+	const buttonPress = () => {
+		console.log("Button Pressed");
+		setBtn(true);
+	};
 
 	const endGameHandler = () => {
 		console.log(round);
@@ -49,12 +57,32 @@ const InGame = () => {
 		}
 	};
 
+	useEffect(() => {
+		console.log("Inside the useEffect: " + round);
+		setBtn(false);
+		expression[gameType](
+			Math.floor(Math.random() * 10) + 1,
+			Math.floor(Math.random() * 10) + 1
+		);
+	}, [round]);
+
 	return (
 		<View>
 			<Text>
-				In-Game Screen, {expression[gameType](first, second)} and this:{" "}
-				{answer}
+				In-Game Screen:
+				{" " + express}
 			</Text>
+			<View>
+				<CustomButton
+					onPress={buttonPress}
+					style={btn && { color: "green" }}
+				>
+					{ans}
+				</CustomButton>
+				<CustomButton onPress={buttonPress}>{909}</CustomButton>
+				<CustomButton onPress={buttonPress}>{908}</CustomButton>
+				<CustomButton onPress={buttonPress}>{907}</CustomButton>
+			</View>
 			<CustomButton onPress={endGameHandler}>End</CustomButton>
 		</View>
 	);
@@ -62,6 +90,14 @@ const InGame = () => {
 
 const styles = StyleSheet.create({
 	container: {},
+
+	red: {
+		color: "red",
+	},
+
+	green: {
+		color: "green",
+	},
 });
 
 export default InGame;
