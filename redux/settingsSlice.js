@@ -6,7 +6,7 @@ const settingsSlice = createSlice({
 		difficulty: "easy",
 		darkMode: false,
 		rounds: 10,
-		roundProgress: 0,
+		roundProgress: 1,
 	},
 	reducers: {
 		incrementRound: (state) => {
