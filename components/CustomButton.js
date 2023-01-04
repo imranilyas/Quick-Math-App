@@ -1,11 +1,12 @@
 import { Pressable, View, Text, StyleSheet } from "react-native";
 
-const CustomButton = ({ children, onPress, style }) => {
+const CustomButton = ({ children, onPress, style, disable }) => {
 	return (
 		<View>
 			<Pressable
 				onPress={onPress}
 				style={({ pressed }) => pressed && styles.pressed}
+				disabled={disable}
 			>
 				<View>
 					<Text style={style}>{children}</Text>

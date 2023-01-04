@@ -11,6 +11,7 @@ const InGame = () => {
 	const [btn, setBtn] = useState(false);
 	const [express, setExpress] = useState("");
 	const [ans, setAnswer] = useState(0);
+	const [disable, setDisable] = useState(false);
 
 	const expression = {
 		"+": function (x, y) {
@@ -44,6 +45,7 @@ const InGame = () => {
 	const buttonPress = () => {
 		console.log("Button Pressed");
 		setBtn(true);
+		setDisable(true);
 	};
 
 	const endGameHandler = () => {
@@ -60,6 +62,7 @@ const InGame = () => {
 	useEffect(() => {
 		console.log("Inside the useEffect: " + round);
 		setBtn(false);
+		setDisable(false);
 		expression[gameType](
 			Math.floor(Math.random() * 10) + 1,
 			Math.floor(Math.random() * 10) + 1
@@ -76,12 +79,19 @@ const InGame = () => {
 				<CustomButton
 					onPress={buttonPress}
 					style={btn && { color: "green" }}
+					disable={disable}
 				>
 					{ans}
 				</CustomButton>
-				<CustomButton onPress={buttonPress}>{909}</CustomButton>
-				<CustomButton onPress={buttonPress}>{908}</CustomButton>
-				<CustomButton onPress={buttonPress}>{907}</CustomButton>
+				<CustomButton onPress={buttonPress} disable={disable}>
+					{909}
+				</CustomButton>
+				<CustomButton onPress={buttonPress} disable={disable}>
+					{908}
+				</CustomButton>
+				<CustomButton onPress={buttonPress} disable={disable}>
+					{907}
+				</CustomButton>
 			</View>
 			<CustomButton onPress={endGameHandler}>End</CustomButton>
 		</View>
