@@ -1,7 +1,14 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, FlatList } from "react-native";
 import CustomButton from "../components/CustomButton";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+
+const choiceArr = [
+	{ id: "Addition +", val: "+" },
+	{ id: "Subtraction -", val: "-" },
+	{ id: "Multiplication x", val: "*" },
+	{ id: "Division /", val: "/" },
+];
 
 const Home = () => {
 	const navigation = useNavigation();
@@ -26,18 +33,19 @@ const Home = () => {
 				<Ionicons name="ios-settings" color="#636363" size={32} />
 			</CustomButton>
 
-			<CustomButton onPress={gameHandler.bind(this, "+")}>
-				Addition +
-			</CustomButton>
-			<CustomButton onPress={gameHandler.bind(this, "-")}>
-				Subtraction +
-			</CustomButton>
-			<CustomButton onPress={gameHandler.bind(this, "*")}>
-				Multiplication +
-			</CustomButton>
-			<CustomButton onPress={gameHandler.bind(this, "/")}>
-				Division +
-			</CustomButton>
+			<FlatList
+				data={choiceArr}
+				renderItem={(choice) => {
+					return (
+						<CustomButton
+							onPress={() => gameHandler(choice.item.val)}
+							key={choice.item.val}
+						>
+							{choice.item.id}
+						</CustomButton>
+					);
+				}}
+			/>
 		</View>
 	);
 };
