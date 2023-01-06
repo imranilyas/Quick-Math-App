@@ -6,8 +6,8 @@ import { useNavigation } from "@react-navigation/native";
 const choiceArr = [
 	{ id: "Addition +", val: "+" },
 	{ id: "Subtraction -", val: "-" },
-	{ id: "Multiplication x", val: "*" },
-	{ id: "Division /", val: "/" },
+	{ id: "Multiplication ×", val: "*" },
+	{ id: "Division ÷", val: "/" },
 ];
 
 const Home = () => {

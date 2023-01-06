@@ -31,7 +31,7 @@ const InGame = () => {
 		},
 		"/": function (x, y) {
 			setAnswer(x / y);
-			setExpress(`${x} / ${y}`);
+			setExpress(`${x} ÷ ${y}`);
 			return `${x} / ${y}`;
 		},
 	};

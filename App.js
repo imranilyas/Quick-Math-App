@@ -23,12 +23,29 @@ export default function App() {
 						<Stack.Screen
 							name="SettingsScreen"
 							component={Settings}
+							options={{
+								animation: "slide_from_bottom",
+								presentation: "modal",
+								title: "Settings",
+							}}
 						/>
-						<Stack.Screen name="HomeScreen" component={Home} />
+						<Stack.Screen
+							name="HomeScreen"
+							component={Home}
+							options={
+								{
+									// headerShown: false,
+								}
+							}
+						/>
 						<Stack.Screen name="InGameScreen" component={InGame} />
 						<Stack.Screen
 							name="EndGameScreen"
 							component={EndGame}
+							options={{
+								// headerShown: false,
+								headerBackVisible: false,
+							}}
 						/>
 					</Stack.Navigator>
 				</NavigationContainer>
