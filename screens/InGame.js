@@ -93,7 +93,7 @@ const InGame = () => {
 					{907}
 				</CustomButton>
 			</View>
-			<CustomButton onPress={endGameHandler}>End</CustomButton>
+			{btn && <CustomButton onPress={endGameHandler}>End</CustomButton>}
 		</View>
 	);
 };
