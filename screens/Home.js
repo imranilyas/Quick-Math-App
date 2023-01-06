@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import { View, Text, StyleSheet, FlatList, Pressable } from "react-native";
 import CustomButton from "../components/CustomButton";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
@@ -23,15 +23,21 @@ const Home = () => {
 	return (
 		<View>
 			<Text>Home Screen</Text>
-			<CustomButton
-				onPress={settingsHandler}
-				style={{
-					textAlign: "right",
-					padding: 20,
-				}}
-			>
-				<Ionicons name="ios-settings" color="#636363" size={32} />
-			</CustomButton>
+
+			<View style={styles.btncontainer}>
+				<Pressable
+					onPress={settingsHandler}
+					style={({ pressed }) => pressed && styles.pressed}
+				>
+					<View style={styles.innerContainer}>
+						<Ionicons
+							name="ios-settings"
+							color="#9c9c9c"
+							size={32}
+						/>
+					</View>
+				</Pressable>
+			</View>
 
 			<FlatList
 				data={choiceArr}
@@ -45,13 +51,29 @@ const Home = () => {
 						</CustomButton>
 					);
 				}}
+				alwaysBounceVertical={false}
 			/>
 		</View>
 	);
 };
 
 const styles = StyleSheet.create({
-	container: {},
+	btncontainer: {
+		margin: 20,
+		alignSelf: "flex-end",
+	},
+
+	pressed: {
+		opacity: 0.5,
+	},
+
+	innerContainer: {
+		backgroundColor: "white",
+		padding: 5,
+		borderRadius: 1000000 / 2,
+		borderColor: "black",
+		borderWidth: 1,
+	},
 });
 
 export default Home;
