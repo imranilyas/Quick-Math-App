@@ -1,15 +1,21 @@
-import { Pressable, View, Text, StyleSheet } from "react-native";
+import {
+	Pressable,
+	View,
+	Text,
+	StyleSheet,
+	useWindowDimensions,
+} from "react-native";
 
 const CustomButton = ({ children, onPress, style, disable }) => {
 	return (
-		<View>
+		<View style={styles.container}>
 			<Pressable
 				onPress={onPress}
 				style={({ pressed }) => pressed && styles.pressed}
 				disabled={disable}
 			>
-				<View>
-					<Text style={style}>{children}</Text>
+				<View style={styles.innerContainer}>
+					<Text style={[styles.text, style]}>{children}</Text>
 				</View>
 			</Pressable>
 		</View>
@@ -18,11 +24,25 @@ const CustomButton = ({ children, onPress, style, disable }) => {
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
+		marginVertical: 15,
+		alignSelf: "center",
+		width: "80%",
 	},
 
 	pressed: {
 		opacity: 0.5,
+	},
+
+	innerContainer: {
+		backgroundColor: "#cccccc",
+	},
+
+	text: {
+		padding: 10,
+		fontSize: 20,
+		fontWeight: "bold",
+		textAlign: "center",
+		borderWidth: 2,
 	},
 });
 

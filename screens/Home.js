@@ -22,8 +22,6 @@ const Home = () => {
 
 	return (
 		<View>
-			<Text>Home Screen</Text>
-
 			<View style={styles.btncontainer}>
 				<Pressable
 					onPress={settingsHandler}
@@ -38,6 +36,9 @@ const Home = () => {
 					</View>
 				</Pressable>
 			</View>
+
+			{/* Custom Title */}
+			<Text>Home Screen</Text>
 
 			<FlatList
 				data={choiceArr}
