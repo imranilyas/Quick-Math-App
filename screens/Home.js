@@ -36,10 +36,8 @@ const Home = () => {
 					</View>
 				</Pressable>
 			</View>
-
-			{/* Custom Title */}
-			<Text>Home Screen</Text>
-
+			{/* {//! Custom Title} */}
+			{/* <Text>Home Screen</Text> */}
 			<FlatList
 				data={choiceArr}
 				renderItem={(choice) => {
@@ -47,6 +45,9 @@ const Home = () => {
 						<CustomButton
 							onPress={() => gameHandler(choice.item.val)}
 							key={choice.item.val}
+							outerStyle={styles.listContainer}
+							innerStyle={styles.listInnerContainer}
+							textStyle={styles.listText}
 						>
 							{choice.item.id}
 						</CustomButton>
@@ -74,6 +75,25 @@ const styles = StyleSheet.create({
 		borderRadius: 1000000 / 2,
 		borderColor: "black",
 		borderWidth: 1,
+	},
+
+	// Flatlist styling
+	listContainer: {
+		marginVertical: 15,
+		alignSelf: "center",
+		width: "80%",
+	},
+
+	listInnerContainer: {
+		backgroundColor: "#cccccc",
+	},
+
+	listText: {
+		padding: 10,
+		fontSize: 20,
+		fontWeight: "bold",
+		textAlign: "center",
+		borderWidth: 2,
 	},
 });
 
