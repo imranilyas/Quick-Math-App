@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import { View, Text, StyleSheet } from "react-native";
-import CustomButton from "../components/CustomButton";
+import GameSelectButton from "../components/GameSelectButton";
 
 const EndGame = () => {
 	const navigation = useNavigation();
@@ -11,7 +11,9 @@ const EndGame = () => {
 	return (
 		<View>
 			<Text>End-Game Screen</Text>
-			<CustomButton onPress={returnHandler}>Main Menu</CustomButton>
+			<GameSelectButton onPress={returnHandler}>
+				Main Menu
+			</GameSelectButton>
 		</View>
 	);
 };

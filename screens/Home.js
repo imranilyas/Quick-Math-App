@@ -1,5 +1,5 @@
-import { View, Text, StyleSheet, FlatList, Pressable } from "react-native";
-import CustomButton from "../components/CustomButton";
+import { View, StyleSheet, FlatList, Pressable } from "react-native";
+import GameSelectButton from "../components/GameSelectButton";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
@@ -42,7 +42,7 @@ const Home = () => {
 				data={choiceArr}
 				renderItem={(choice) => {
 					return (
-						<CustomButton
+						<GameSelectButton
 							onPress={() => gameHandler(choice.item.val)}
 							key={choice.item.val}
 							outerStyle={styles.listContainer}
@@ -50,7 +50,7 @@ const Home = () => {
 							textStyle={styles.listText}
 						>
 							{choice.item.id}
-						</CustomButton>
+						</GameSelectButton>
 					);
 				}}
 				alwaysBounceVertical={false}

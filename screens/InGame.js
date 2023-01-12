@@ -2,7 +2,8 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { useEffect, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import CustomButton from "../components/CustomButton";
+import AnswerButton from "../components/AnswerButton";
+import GameSelectButton from "../components/GameSelectButton";
 import { incrementRound, resetRound } from "../redux/settingsSlice";
 
 const InGame = () => {
@@ -11,6 +12,7 @@ const InGame = () => {
 	const [btn, setBtn] = useState(false);
 	const [express, setExpress] = useState("");
 	const [ans, setAnswer] = useState(0);
+	const [questionArr, setQuestionArr] = useState([]);
 	const [disable, setDisable] = useState(false);
 
 	const expression = {
@@ -76,24 +78,28 @@ const InGame = () => {
 				{" " + express}
 			</Text>
 			<View>
-				<CustomButton
+				<AnswerButton
 					onPress={buttonPress}
 					style={btn && { color: "green" }}
 					disable={disable}
 				>
 					{ans}
-				</CustomButton>
-				<CustomButton onPress={buttonPress} disable={disable}>
+				</AnswerButton>
+				<AnswerButton onPress={buttonPress} disable={disable}>
 					{909}
-				</CustomButton>
-				<CustomButton onPress={buttonPress} disable={disable}>
+				</AnswerButton>
+				<AnswerButton onPress={buttonPress} disable={disable}>
 					{908}
-				</CustomButton>
-				<CustomButton onPress={buttonPress} disable={disable}>
+				</AnswerButton>
+				<AnswerButton onPress={buttonPress} disable={disable}>
 					{907}
-				</CustomButton>
+				</AnswerButton>
 			</View>
-			{btn && <CustomButton onPress={endGameHandler}>End</CustomButton>}
+			{btn && (
+				<GameSelectButton onPress={endGameHandler}>
+					End
+				</GameSelectButton>
+			)}
 		</View>
 	);
 };

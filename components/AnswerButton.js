@@ -1,6 +1,6 @@
 import { Pressable, View, Text, StyleSheet } from "react-native";
 
-const CustomButton = ({
+const AnswerButton = ({
 	children,
 	onPress,
 	style,
@@ -30,4 +30,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default CustomButton;
+export default AnswerButton;
