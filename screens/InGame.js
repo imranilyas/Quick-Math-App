@@ -110,6 +110,12 @@ const InGame = () => {
 									}
 								}
 								disable={disable}
+								specificPress={false}
+								bgc={
+									question.item.id === ans
+										? { backgroundColor: "blue" }
+										: { backgroundColor: "red" }
+								}
 							>
 								{question.item.id}
 							</AnswerButton>

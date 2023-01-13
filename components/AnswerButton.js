@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Pressable, View, Text, StyleSheet } from "react-native";
 
 const AnswerButton = ({
@@ -8,15 +9,24 @@ const AnswerButton = ({
 	outerStyle,
 	innerStyle,
 	textStyle,
+	specificPress,
+	bgc,
 }) => {
+	const [press, setPress] = useState(specificPress);
+
+	const buttonHandler = () => {
+		setPress(true);
+		onPress();
+	};
+
 	return (
 		<View style={outerStyle}>
 			<Pressable
-				onPress={onPress}
+				onPress={buttonHandler}
 				style={({ pressed }) => pressed && styles.pressed}
 				disabled={disable}
 			>
-				<View style={innerStyle}>
+				<View style={disable && press && bgc}>
 					<Text style={[textStyle, style]}>{children}</Text>
 				</View>
 			</Pressable>
