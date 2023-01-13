@@ -6,9 +6,6 @@ const AnswerButton = ({
 	onPress,
 	style,
 	disable,
-	outerStyle,
-	innerStyle,
-	textStyle,
 	specificPress,
 	bgc,
 }) => {
@@ -20,14 +17,14 @@ const AnswerButton = ({
 	};
 
 	return (
-		<View style={outerStyle}>
+		<View style={styles.outerStyle}>
 			<Pressable
 				onPress={buttonHandler}
 				style={({ pressed }) => pressed && styles.pressed}
 				disabled={disable}
 			>
-				<View style={disable && press && bgc}>
-					<Text style={[textStyle, style]}>{children}</Text>
+				<View style={[styles.innerStyle, disable && press && bgc]}>
+					<Text style={[styles.textStyle, style]}>{children}</Text>
 				</View>
 			</Pressable>
 		</View>
@@ -37,6 +34,27 @@ const AnswerButton = ({
 const styles = StyleSheet.create({
 	pressed: {
 		opacity: 0.5,
+	},
+
+	outerStyle: {
+		flex: 1,
+		// marginHorizontal: "1.5%",
+		margin: "3%",
+	},
+
+	innerStyle: {
+		height: 125,
+		padding: 10,
+		borderWidth: 2,
+		justifyContent: "center",
+		borderRadius: "8%",
+		backgroundColor: "#cccccc",
+	},
+
+	textStyle: {
+		textAlign: "center",
+		fontSize: 20,
+		fontWeight: "bold",
 	},
 });
 

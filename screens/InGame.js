@@ -122,6 +122,7 @@ const InGame = () => {
 						);
 					}}
 					alwaysBounceVertical={false}
+					numColumns={2}
 				/>
 			</View>
 
