@@ -14,7 +14,7 @@ const settingsSlice = createSlice({
 		},
 
 		resetRound: (state) => {
-			state.roundProgress = 0;
+			state.roundProgress = 1;
 		},
 
 		setRounds: (state, action) => {

@@ -1,6 +1,6 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useEffect, useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, FlatList } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import AnswerButton from "../components/AnswerButton";
 import GameSelectButton from "../components/GameSelectButton";
@@ -19,23 +19,43 @@ const InGame = () => {
 		"+": function (x, y) {
 			setAnswer(x + y);
 			setExpress(`${x} + ${y}`);
-			return `${x} + ${y}`;
+			return x + y;
 		},
 		"-": function (x, y) {
 			setAnswer(x - y);
 			setExpress(`${x} - ${y}`);
-			return `${x} - ${y}`;
+			return x - y;
 		},
 		"*": function (x, y) {
 			setAnswer(x * y);
 			setExpress(`${x} x ${y}`);
-			return `${x} x ${y}`;
+			return x * y;
 		},
 		"/": function (x, y) {
 			setAnswer(x / y);
 			setExpress(`${x} ÷ ${y}`);
-			return `${x} / ${y}`;
+			return x / y;
 		},
+	};
+
+	const randomizeAnswers = (val) => {
+		let x = Math.floor(Math.random() * 4);
+		const arr = [];
+		for (let i = 0; i < 4; i++) {
+			if (i === x) {
+				arr.push({ id: val, chosen: false });
+			} else {
+				let rng = Math.floor(Math.random() * val * 2);
+				while (
+					arr.some((question) => question["id"] === rng) ||
+					rng === val
+				) {
+					rng = Math.floor(Math.random() * val * 2);
+				}
+				arr.push({ id: rng, chosen: false });
+			}
+		}
+		setQuestionArr(arr);
 	};
 
 	const round = useSelector((state) => state.settings.roundProgress);
@@ -45,15 +65,13 @@ const InGame = () => {
 	const dispatch = useDispatch();
 
 	const buttonPress = () => {
-		console.log("Button Pressed");
 		setBtn(true);
 		setDisable(true);
 	};
 
 	const endGameHandler = () => {
-		console.log(round);
 		if (round < endRound) {
-			console.log("Nobody move");
+			setQuestionArr([]);
 			dispatch(incrementRound());
 		} else {
 			dispatch(resetRound());
@@ -62,13 +80,13 @@ const InGame = () => {
 	};
 
 	useEffect(() => {
-		console.log("Inside the useEffect: " + round);
 		setBtn(false);
 		setDisable(false);
-		expression[gameType](
+		const num = expression[gameType](
 			Math.floor(Math.random() * 10) + 1,
 			Math.floor(Math.random() * 10) + 1
 		);
+		randomizeAnswers(num);
 	}, [round]);
 
 	return (
@@ -78,23 +96,29 @@ const InGame = () => {
 				{" " + express}
 			</Text>
 			<View>
-				<AnswerButton
-					onPress={buttonPress}
-					style={btn && { color: "green" }}
-					disable={disable}
-				>
-					{ans}
-				</AnswerButton>
-				<AnswerButton onPress={buttonPress} disable={disable}>
-					{909}
-				</AnswerButton>
-				<AnswerButton onPress={buttonPress} disable={disable}>
-					{908}
-				</AnswerButton>
-				<AnswerButton onPress={buttonPress} disable={disable}>
-					{907}
-				</AnswerButton>
+				<FlatList
+					data={questionArr}
+					renderItem={(question) => {
+						return (
+							<AnswerButton
+								key={question.item.id}
+								onPress={buttonPress}
+								style={
+									btn &&
+									question.item.id === ans && {
+										color: "green",
+									}
+								}
+								disable={disable}
+							>
+								{question.item.id}
+							</AnswerButton>
+						);
+					}}
+					alwaysBounceVertical={false}
+				/>
 			</View>
+
 			{btn && (
 				<GameSelectButton onPress={endGameHandler}>
 					End
