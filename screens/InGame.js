@@ -92,6 +92,7 @@ const InGame = () => {
 	return (
 		<View>
 			<Text style={styles.expression}>{express}</Text>
+			<Text style={styles.expression}>{btn && ans}</Text>
 			<View>
 				<FlatList
 					data={questionArr}
@@ -100,12 +101,6 @@ const InGame = () => {
 							<AnswerButton
 								key={question.item.id}
 								onPress={buttonPress}
-								style={
-									btn &&
-									question.item.id === ans && {
-										color: "green",
-									}
-								}
 								disable={disable}
 								specificPress={false}
 								bgc={
@@ -140,6 +135,7 @@ const styles = StyleSheet.create({
 		fontSize: 40,
 		backgroundColor: "#cccccc",
 		margin: 40,
+		// textDecorationLine: "underline",
 	},
 
 	red: {
