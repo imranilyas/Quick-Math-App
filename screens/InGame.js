@@ -18,7 +18,7 @@ const InGame = () => {
 	const expression = {
 		"+": function (x, y) {
 			setAnswer(x + y);
-			setExpress(`${x} + ${y}`);
+			setExpress(`${x}\n + ${y}`);
 			return x + y;
 		},
 		"-": function (x, y) {
@@ -91,10 +91,7 @@ const InGame = () => {
 
 	return (
 		<View>
-			<Text>
-				In-Game Screen:
-				{" " + express}
-			</Text>
+			<Text style={styles.expression}>{express}</Text>
 			<View>
 				<FlatList
 					data={questionArr}
@@ -137,6 +134,13 @@ const InGame = () => {
 
 const styles = StyleSheet.create({
 	container: {},
+
+	expression: {
+		textAlign: "center",
+		fontSize: 40,
+		backgroundColor: "#cccccc",
+		margin: 40,
+	},
 
 	red: {
 		color: "red",
