@@ -2,6 +2,7 @@ import { View, StyleSheet, FlatList, Pressable } from "react-native";
 import GameSelectButton from "../components/GameSelectButton";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const choiceArr = [
 	{ id: "Addition +", val: "+" },
@@ -21,7 +22,7 @@ const Home = () => {
 	};
 
 	return (
-		<View>
+		<SafeAreaView>
 			<View style={styles.btncontainer}>
 				<Pressable
 					onPress={settingsHandler}
@@ -55,13 +56,14 @@ const Home = () => {
 				}}
 				alwaysBounceVertical={false}
 			/>
-		</View>
+		</SafeAreaView>
 	);
 };
 
 const styles = StyleSheet.create({
 	btncontainer: {
-		margin: 20,
+		marginHorizontal: 20,
+		marginVertical: 5,
 		alignSelf: "flex-end",
 	},
 
@@ -73,8 +75,8 @@ const styles = StyleSheet.create({
 		backgroundColor: "white",
 		padding: 5,
 		borderRadius: 1000000 / 2,
-		borderColor: "black",
-		borderWidth: 1,
+		borderColor: "#585858",
+		borderWidth: 1.5,
 	},
 
 	// Flatlist styling
