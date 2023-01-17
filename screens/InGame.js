@@ -18,7 +18,7 @@ const InGame = () => {
 	const expression = {
 		"+": function (x, y) {
 			setAnswer(x + y);
-			setExpress(`${x}\n + ${y}`);
+			setExpress(`${x}\n+ ${y}`);
 			return x + y;
 		},
 		"-": function (x, y) {
@@ -86,20 +86,34 @@ const InGame = () => {
 	};
 
 	useEffect(() => {
-		setBtn(false);
-		setDisable(false);
-		const num = expression[gameType](
-			Math.floor(Math.random() * 10) + 1,
-			Math.floor(Math.random() * 10) + 1
-		);
-		randomizeAnswers(num);
+		if (round <= endRound) {
+			setBtn(false);
+			setDisable(false);
+			const num = expression[gameType](
+				Math.floor(Math.random() * 10) + 1,
+				Math.floor(Math.random() * 10) + 1
+			);
+			randomizeAnswers(num);
+		}
 	}, [round]);
 
 	return (
-		<View>
-			<Text style={styles.expression}>{express}</Text>
-			<Text style={styles.expression}>{btn && ans}</Text>
-			<View>
+		<View style={styles.container}>
+			<View style={styles.expressionContainer}>
+				<View style={styles.innerContainer}>
+					<Text style={styles.expression}>{express}</Text>
+					<Text
+						style={[
+							styles.expression,
+							{ textDecorationLine: "none" },
+						]}
+					>
+						{btn ? ans : "?"}
+					</Text>
+				</View>
+			</View>
+
+			<View style={styles.listContainer}>
 				<FlatList
 					data={questionArr}
 					renderItem={(question) => {
@@ -134,22 +148,33 @@ const InGame = () => {
 };
 
 const styles = StyleSheet.create({
-	container: {},
+	container: {
+		margin: 15,
+	},
+
+	expressionContainer: {
+		margin: 10,
+		justifyContent: "center",
+		alignItems: "center",
+		// height: "50%",
+	},
+
+	innerContainer: {
+		// backgroundColor: "green",
+		padding: 20,
+	},
 
 	expression: {
-		textAlign: "center",
+		textAlign: "right",
 		fontSize: 40,
-		backgroundColor: "#cccccc",
-		margin: 40,
-		// textDecorationLine: "underline",
+		padding: 10,
+		// backgroundColor: "#cccccc",
+		// margin: 40,
+		textDecorationLine: "underline",
 	},
 
-	red: {
-		color: "red",
-	},
-
-	green: {
-		color: "green",
+	listContainer: {
+		// height: "50%",
 	},
 });
 
