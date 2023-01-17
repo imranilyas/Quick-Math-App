@@ -1,5 +1,5 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { View, Text, StyleSheet, FlatList } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import AnswerButton from "../components/AnswerButton";
@@ -63,6 +63,12 @@ const InGame = () => {
 
 	const navigation = useNavigation();
 	const dispatch = useDispatch();
+
+	useLayoutEffect(() => {
+		navigation.setOptions({
+			title: `Round ${round} of ${endRound}`,
+		});
+	}, [round, endRound, navigation]);
 
 	const buttonPress = () => {
 		setBtn(true);
