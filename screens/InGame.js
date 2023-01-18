@@ -121,36 +121,35 @@ const InGame = () => {
 				</View>
 			</View>
 
-			<View style={styles.listContainer}>
-				<FlatList
-					data={questionArr}
-					renderItem={(question) => {
-						return (
-							<AnswerButton
-								key={question.item.id}
-								onPress={buttonPress}
-								disable={disable}
-								specificPress={false}
-								bgc={
-									question.item.id === ans
-										? { backgroundColor: "blue" }
-										: { backgroundColor: "red" }
-								}
-							>
-								{question.item.id}
-							</AnswerButton>
-						);
-					}}
-					alwaysBounceVertical={false}
-					numColumns={2}
-				/>
-			</View>
-
 			{btn && (
 				<GameSelectButton onPress={endGameHandler}>
 					End
 				</GameSelectButton>
 			)}
+
+			<FlatList
+				contentContainerStyle={styles.listContainer}
+				data={questionArr}
+				renderItem={(question) => {
+					return (
+						<AnswerButton
+							key={question.item.id}
+							onPress={buttonPress}
+							disable={disable}
+							specificPress={false}
+							bgc={
+								question.item.id === ans
+									? { backgroundColor: "blue" }
+									: { backgroundColor: "red" }
+							}
+						>
+							{question.item.id}
+						</AnswerButton>
+					);
+				}}
+				alwaysBounceVertical={false}
+				numColumns={2}
+			/>
 		</View>
 	);
 };
@@ -158,6 +157,8 @@ const InGame = () => {
 const styles = StyleSheet.create({
 	container: {
 		margin: 15,
+		flex: 1,
+		// justifyContent: "flex-end",
 	},
 
 	expressionContainer: {
@@ -181,7 +182,8 @@ const styles = StyleSheet.create({
 	},
 
 	listContainer: {
-		// height: "50%",
+		flex: 1,
+		justifyContent: "flex-end",
 	},
 });
 
