@@ -97,18 +97,26 @@ const InGame = () => {
 		}
 	}, [round]);
 
+	const arr = express.split(/([^0-9.]+)/);
+
 	return (
 		<View style={styles.container}>
 			<View style={styles.expressionContainer}>
 				<View style={styles.innerContainer}>
-					<Text style={styles.expression}>{express}</Text>
+					<Text style={styles.expression}>
+						{arr[0]}
+						<Text style={{ textDecorationLine: "underline" }}>
+							{arr[1]}
+							{arr[2]}
+						</Text>
+					</Text>
 					<Text
 						style={[
 							styles.expression,
 							{ textDecorationLine: "none" },
 						]}
 					>
-						{btn ? ans : "?"}
+						{btn ? ans : " "}
 					</Text>
 				</View>
 			</View>
@@ -170,7 +178,6 @@ const styles = StyleSheet.create({
 		padding: 10,
 		// backgroundColor: "#cccccc",
 		// margin: 40,
-		textDecorationLine: "underline",
 	},
 
 	listContainer: {
