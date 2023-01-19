@@ -1,15 +1,19 @@
-import { useNavigation, useRoute } from "@react-navigation/native";
-import { useEffect, useLayoutEffect, useState } from "react";
 import { View, Text, StyleSheet, FlatList } from "react-native";
+import { useEffect, useLayoutEffect, useState } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
+import { incrementRound, resetRound } from "../redux/settingsSlice";
+
+import { useNavigation, useRoute } from "@react-navigation/native";
+
 import AnswerButton from "../components/AnswerButton";
 import GameSelectButton from "../components/GameSelectButton";
-import { incrementRound, resetRound } from "../redux/settingsSlice";
+
+import { CountdownCircleTimer } from "react-native-countdown-circle-timer";
 
 const InGame = () => {
 	const gameType = useRoute().params.gameType;
 
-	const [btn, setBtn] = useState(false);
 	const [express, setExpress] = useState("");
 	const [ans, setAnswer] = useState(0);
 	const [questionArr, setQuestionArr] = useState([]);
@@ -71,7 +75,6 @@ const InGame = () => {
 	}, [round, endRound, navigation]);
 
 	const buttonPress = () => {
-		setBtn(true);
 		setDisable(true);
 	};
 
@@ -87,7 +90,6 @@ const InGame = () => {
 
 	useEffect(() => {
 		if (round <= endRound) {
-			setBtn(false);
 			setDisable(false);
 			const num = expression[gameType](
 				Math.floor(Math.random() * 10) + 1,
@@ -101,6 +103,23 @@ const InGame = () => {
 
 	return (
 		<View style={styles.container}>
+			<View style={styles.timerContainer}>
+				<CountdownCircleTimer
+					isPlaying={disable ? false : true}
+					duration={10}
+					colors={["#009e37", "#fff200", "#ff9900", "#ca0000"]}
+					colorsTime={[10, 5, 3, 0]}
+					size={80}
+					onComplete={buttonPress}
+					key={round}
+				>
+					{({ remainingTime }) => (
+						<Text style={styles.timer}>{remainingTime}</Text>
+					)}
+				</CountdownCircleTimer>
+			</View>
+
+			{/* Math Problem and Answer Section */}
 			<View style={styles.expressionContainer}>
 				<View style={styles.innerContainer}>
 					<Text style={styles.expression}>
@@ -116,16 +135,10 @@ const InGame = () => {
 							{ textDecorationLine: "none" },
 						]}
 					>
-						{btn ? ans : " "}
+						{disable ? ans : " "}
 					</Text>
 				</View>
 			</View>
-
-			{btn && (
-				<GameSelectButton onPress={endGameHandler}>
-					End
-				</GameSelectButton>
-			)}
 
 			<FlatList
 				contentContainerStyle={styles.listContainer}
@@ -150,6 +163,9 @@ const InGame = () => {
 				alwaysBounceVertical={false}
 				numColumns={2}
 			/>
+			<GameSelectButton onPress={endGameHandler}>
+				{disable ? "End" : " "}
+			</GameSelectButton>
 		</View>
 	);
 };
@@ -159,6 +175,15 @@ const styles = StyleSheet.create({
 		margin: 15,
 		flex: 1,
 		// justifyContent: "flex-end",
+	},
+
+	timerContainer: {
+		alignSelf: "flex-end",
+	},
+
+	timer: {
+		fontSize: 24,
+		textAlign: "center",
 	},
 
 	expressionContainer: {
