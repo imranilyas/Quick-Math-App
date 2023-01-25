@@ -1,5 +1,5 @@
-import { View, Text, StyleSheet, FlatList } from "react-native";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { View, Text, StyleSheet, FlatList, Animated } from "react-native";
+import { useEffect, useLayoutEffect, useState, useRef } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { incrementRound, resetRound } from "../redux/settingsSlice";
@@ -18,6 +18,18 @@ const InGame = () => {
 	const [ans, setAnswer] = useState(0);
 	const [questionArr, setQuestionArr] = useState([]);
 	const [disable, setDisable] = useState(false);
+
+	const shrinkValue = useRef(new Animated.Value(24)).current;
+
+	const shrinkAnimation = () => {
+		Animated.loop(
+			Animated.timing(shrinkValue, {
+				toValue: 0,
+				duration: 1000,
+				useNativeDriver: false,
+			})
+		).start();
+	};
 
 	const expression = {
 		"+": function (x, y) {
@@ -76,6 +88,7 @@ const InGame = () => {
 
 	const buttonPress = () => {
 		setDisable(true);
+		Animated.timing(shrinkValue).reset();
 	};
 
 	const endGameHandler = () => {
@@ -101,6 +114,11 @@ const InGame = () => {
 
 	const arr = express.split(/([^0-9.]+)/);
 
+	useEffect(() => {
+		shrinkAnimation();
+		console.log("Shrink Animation");
+	}, [shrinkValue, round]);
+
 	return (
 		<View style={styles.container}>
 			<View style={styles.timerContainer}>
@@ -114,7 +132,11 @@ const InGame = () => {
 					key={round}
 				>
 					{({ remainingTime }) => (
-						<Text style={styles.timer}>{remainingTime}</Text>
+						<Animated.Text
+							style={[styles.timer, { fontSize: shrinkValue }]}
+						>
+							{remainingTime}
+						</Animated.Text>
 					)}
 				</CountdownCircleTimer>
 			</View>
