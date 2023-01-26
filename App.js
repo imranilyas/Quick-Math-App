@@ -11,15 +11,41 @@ import EndGame from "./screens/EndGame";
 import { store } from "./redux/store";
 import { Provider } from "react-redux";
 
+import { useFonts } from "expo-font";
+// import * as SplashScreen from "expo-splash-screen";
+// import { useCallback } from "react";
+
 const Stack = createNativeStackNavigator();
 
+// SplashScreen.preventAutoHideAsync();
+
 export default function App() {
+	const [fontsLoaded] = useFonts({
+		"Lora-Regular": require("./assets/fonts/Lora-Regular.ttf"),
+	});
+
+	// const onLayoutRootView = useCallback(async () => {
+	// 	if (fontsLoaded) {
+	// 		await SplashScreen.hideAsync();
+	// 	}
+	// }, [fontsLoaded]);
+
+	if (!fontsLoaded) {
+		return null;
+	}
+
 	return (
 		<>
 			<StatusBar style="auto" />
 			<Provider store={store}>
 				<NavigationContainer>
-					<Stack.Navigator initialRouteName="HomeScreen">
+					<Stack.Navigator
+						initialRouteName="HomeScreen"
+						screenOptions={{
+							headerTitleStyle: { fontFamily: "Lora-Regular" },
+							contentStyle: { fontFamily: "Lora-Regular" },
+						}}
+					>
 						<Stack.Screen
 							name="SettingsScreen"
 							component={Settings}
