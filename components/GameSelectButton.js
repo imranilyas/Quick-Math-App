@@ -16,7 +16,7 @@ const GameSelectButton = ({
 				disabled={disable}
 			>
 				<View style={innerStyle}>
-					<Text style={textStyle}>{children}</Text>
+					<Text style={[textStyle, styles.fontFam]}>{children}</Text>
 				</View>
 			</Pressable>
 		</View>
@@ -26,6 +26,10 @@ const GameSelectButton = ({
 const styles = StyleSheet.create({
 	pressed: {
 		opacity: 0.5,
+	},
+
+	fontFam: {
+		fontFamily: "Lora-Regular",
 	},
 });
 
