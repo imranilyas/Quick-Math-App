@@ -3,7 +3,6 @@ import { Pressable, View, Text, StyleSheet } from "react-native";
 const GameSelectButton = ({
 	children,
 	onPress,
-	style,
 	disable,
 	outerStyle,
 	innerStyle,
@@ -17,7 +16,7 @@ const GameSelectButton = ({
 				disabled={disable}
 			>
 				<View style={innerStyle}>
-					<Text style={[textStyle, style]}>{children}</Text>
+					<Text style={textStyle}>{children}</Text>
 				</View>
 			</Pressable>
 		</View>
