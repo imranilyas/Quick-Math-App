@@ -185,8 +185,18 @@ const InGame = () => {
 				alwaysBounceVertical={false}
 				numColumns={2}
 			/>
-			<GameSelectButton onPress={endGameHandler}>
-				{disable ? "End" : " "}
+
+			<GameSelectButton
+				onPress={endGameHandler}
+				disable={!disable}
+				outerStyle={[
+					styles.buttonContainer,
+					!disable && { opacity: 0.2 },
+				]}
+				innerStyle={styles.buttonInnerContainer}
+				textStyle={styles.buttonText}
+			>
+				Next Problem
 			</GameSelectButton>
 		</View>
 	);
@@ -231,6 +241,28 @@ const styles = StyleSheet.create({
 	listContainer: {
 		flex: 1,
 		justifyContent: "flex-end",
+	},
+
+	// Next Question Button Styling
+	buttonContainer: {
+		marginVertical: 15,
+		marginHorizontal: "3%",
+		// borderRadius: 10000 / 2,
+		// alignSelf: "center",
+		// width: "88%",
+	},
+
+	buttonInnerContainer: {
+		backgroundColor: "#cccccc",
+		borderWidth: 2,
+		borderRadius: "8%",
+	},
+
+	buttonText: {
+		padding: 10,
+		fontSize: 20,
+		fontWeight: "bold",
+		textAlign: "center",
 	},
 });
 
