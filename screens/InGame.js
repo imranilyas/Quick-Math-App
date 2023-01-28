@@ -40,17 +40,17 @@ const InGame = () => {
 		},
 		"-": function (x, y) {
 			setAnswer(x - y);
-			setExpress(`${x} - ${y}`);
+			setExpress(`${x}\n- ${y}`);
 			return x - y;
 		},
 		"*": function (x, y) {
 			setAnswer(x * y);
-			setExpress(`${x} x ${y}`);
+			setExpress(`${x}\nx ${y}`);
 			return x * y;
 		},
 		"/": function (x, y) {
 			setAnswer(x / y);
-			setExpress(`${x} ÷ ${y}`);
+			setExpress(`${x}\n÷ ${y}`);
 			return x / y;
 		},
 	};
