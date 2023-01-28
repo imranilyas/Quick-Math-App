@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, FlatList, Animated } from "react-native";
+import { View, StyleSheet, FlatList, Animated } from "react-native";
 import { useEffect, useLayoutEffect, useState, useRef } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -8,6 +8,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 
 import AnswerButton from "../components/AnswerButton";
 import GameSelectButton from "../components/GameSelectButton";
+import MathExpression from "../components/MathExpression";
 
 import { CountdownCircleTimer } from "react-native-countdown-circle-timer";
 
@@ -112,8 +113,6 @@ const InGame = () => {
 		}
 	}, [round]);
 
-	const arr = express.split(/([^0-9.]+)/);
-
 	useEffect(() => {
 		shrinkAnimation();
 		console.log("Shrink Animation");
@@ -142,25 +141,11 @@ const InGame = () => {
 			</View>
 
 			{/* Math Problem and Answer Section */}
-			<View style={styles.expressionContainer}>
-				<View style={styles.innerContainer}>
-					<Text style={styles.expression}>
-						{arr[0]}
-						<Text style={{ textDecorationLine: "underline" }}>
-							{arr[1]}
-							{arr[2]}
-						</Text>
-					</Text>
-					<Text
-						style={[
-							styles.expression,
-							{ textDecorationLine: "none" },
-						]}
-					>
-						{disable ? ans : " "}
-					</Text>
-				</View>
-			</View>
+			<MathExpression
+				expression={express}
+				answer={ans}
+				disable={disable}
+			/>
 
 			<FlatList
 				contentContainerStyle={styles.listContainer}
@@ -216,26 +201,6 @@ const styles = StyleSheet.create({
 	timer: {
 		fontSize: 24,
 		textAlign: "center",
-	},
-
-	expressionContainer: {
-		margin: 10,
-		justifyContent: "center",
-		alignItems: "center",
-		// height: "50%",
-	},
-
-	innerContainer: {
-		// backgroundColor: "green",
-		padding: 20,
-	},
-
-	expression: {
-		textAlign: "right",
-		fontSize: 40,
-		padding: 10,
-		// backgroundColor: "#cccccc",
-		// margin: 40,
 	},
 
 	listContainer: {
