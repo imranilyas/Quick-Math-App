@@ -201,6 +201,7 @@ const styles = StyleSheet.create({
 	timer: {
 		fontSize: 24,
 		textAlign: "center",
+		fontFamily: "Lora-Regular",
 	},
 
 	listContainer: {

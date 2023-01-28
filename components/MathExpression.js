@@ -32,11 +32,9 @@ const styles = StyleSheet.create({
 		margin: 10,
 		justifyContent: "center",
 		alignItems: "center",
-		// height: "50%",
 	},
 
 	innerContainer: {
-		// backgroundColor: "green",
 		padding: 20,
 	},
 
@@ -44,8 +42,7 @@ const styles = StyleSheet.create({
 		textAlign: "right",
 		fontSize: 40,
 		padding: 10,
-		// backgroundColor: "#cccccc",
-		// margin: 40,
+		fontFamily: "Lora-Regular",
 	},
 });
 
