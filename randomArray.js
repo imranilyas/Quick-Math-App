@@ -3,7 +3,7 @@ export const randomArray = (answer) => {
 	const arr = [];
 	for (let i = 0; i < 4; i++) {
 		if (i === x) {
-			arr.push({ id: answer, chosen: false });
+			arr.push({ id: answer });
 		} else {
 			let rng = Math.floor(Math.random() * answer + 10);
 			while (
@@ -12,7 +12,7 @@ export const randomArray = (answer) => {
 			) {
 				rng = Math.floor(Math.random() * answer + 10);
 			}
-			arr.push({ id: rng, chosen: false });
+			arr.push({ id: rng });
 		}
 	}
 	return arr;
