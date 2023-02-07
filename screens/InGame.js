@@ -9,7 +9,12 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import AnswerButton from "../components/AnswerButton";
 import GameSelectButton from "../components/GameSelectButton";
 import MathExpression from "../components/MathExpression";
-import { randomArray } from "../randomArray";
+import {
+	additionArray,
+	subtractionArray,
+	multiplicationArray,
+	divisionArray,
+} from "../randomArray";
 
 import { CountdownCircleTimer } from "react-native-countdown-circle-timer";
 
@@ -57,8 +62,15 @@ const InGame = () => {
 	};
 
 	const randomizeAnswers = (val) => {
-		const arrayQuestions = randomArray(val);
-		setQuestionArr(arrayQuestions);
+		if (gameType === "+") {
+			setQuestionArr(additionArray(val));
+		} else if (gameType === "-") {
+			setQuestionArr(subtractionArray(val));
+		} else if (gameType === "*") {
+			setQuestionArr(multiplicationArray(val));
+		} else {
+			setQuestionArr(divisionArray(val));
+		}
 	};
 
 	const round = useSelector((state) => state.settings.roundProgress);
