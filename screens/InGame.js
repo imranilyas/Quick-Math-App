@@ -55,6 +55,18 @@ const InGame = () => {
 			return x * y;
 		},
 		"/": function (x, y) {
+			let num1 = x,
+				num2 = y;
+			if (y > x) {
+				x = num2;
+				y = num1;
+			}
+			console.log(x + "  /  " + y);
+			let remainder = x % y;
+			if (remainder > 0) remainder = y - remainder;
+			x += remainder;
+			console.log(remainder);
+			console.log(x + "  /  " + y);
 			setAnswer(x / y);
 			setExpress(`${x}\n÷ ${y}`);
 			return x / y;

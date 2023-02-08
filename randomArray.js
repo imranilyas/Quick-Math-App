@@ -67,12 +67,12 @@ export const divisionArray = (answer) => {
 		if (i === x) {
 			arr.push({ id: answer });
 		} else {
-			let rng = Math.floor(Math.random() * answer * 2 + 1);
+			let rng = Math.floor(Math.random() * 10);
 			while (
 				arr.some((question) => question["id"] === rng) ||
 				rng === answer
 			) {
-				rng = Math.floor(Math.random() * answer * 2 + 1);
+				rng = Math.floor(Math.random() * 10);
 			}
 			arr.push({ id: rng });
 		}
