@@ -10,7 +10,6 @@ import EndGame from "./screens/EndGame";
 
 import { store } from "./redux/store";
 import { Provider } from "react-redux";
-
 import { useFonts } from "expo-font";
 // import * as SplashScreen from "expo-splash-screen";
 // import { useCallback } from "react";
@@ -42,8 +41,16 @@ export default function App() {
 					<Stack.Navigator
 						initialRouteName="HomeScreen"
 						screenOptions={{
-							headerTitleStyle: { fontFamily: "Lora-Regular" },
-							contentStyle: { fontFamily: "Lora-Regular" },
+							headerTitleStyle: {
+								fontFamily: "Lora-Regular",
+							},
+							headerStyle: {
+								backgroundColor: "hsl(307, 100%, 82%)",
+							},
+							contentStyle: {
+								fontFamily: "Lora-Regular",
+								backgroundColor: "hsl(307, 100%, 88%)",
+							},
 						}}
 					>
 						<Stack.Screen
