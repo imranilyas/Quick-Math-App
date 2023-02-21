@@ -1,4 +1,4 @@
-import { StyleSheet, FlatList } from "react-native";
+import { StyleSheet, FlatList, Text, Image, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { useNavigation } from "@react-navigation/native";
@@ -25,12 +25,22 @@ const Home = () => {
 	};
 
 	return (
-		<SafeAreaView>
+		<SafeAreaView style={{ flex: 1 }}>
 			<SettingsButton onPress={settingsHandler} />
 
-			{/* {//! Custom Title} */}
-			{/* <Text>Home Screen</Text> */}
+			<Text style={styles.title}>Quick Maths</Text>
+			{/* <View style={styles.iconContainer}>
+				<Image
+					source={require("../assets/math-icon.png")}
+					style={styles.icon}
+				/>
+			</View> */}
 			<FlatList
+				contentContainerStyle={{
+					flex: 1,
+					justifyContent: "flex-end",
+					marginBottom: 20,
+				}}
 				data={choiceArr}
 				renderItem={(choice) => {
 					return (
@@ -52,23 +62,40 @@ const Home = () => {
 };
 
 const styles = StyleSheet.create({
+	title: {
+		fontSize: 48,
+		textAlign: "center",
+		fontFamily: "Lora-Regular",
+	},
+	iconContainer: {
+		// backgroundColor: "transparent",
+		alignSelf: "center",
+	},
+	icon: {
+		width: 150,
+		height: 150,
+	},
 	// Flatlist styling
 	listContainer: {
-		marginVertical: 15,
+		marginVertical: 20,
 		alignSelf: "center",
 		width: "80%",
 	},
 
 	listInnerContainer: {
 		backgroundColor: "#cccccc",
+		borderRadius: 10,
+		// borderWidth: 2,
+		shadowColor: "black",
+		shadowOffset: { width: 0, height: 2 },
+		shadowRadius: 1,
+		shadowOpacity: 0.5,
 	},
 
 	listText: {
-		padding: 10,
-		fontSize: 20,
-		fontWeight: "bold",
+		padding: 12,
+		fontSize: 22,
 		textAlign: "center",
-		borderWidth: 2,
 	},
 });
 
