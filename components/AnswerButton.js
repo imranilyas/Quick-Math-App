@@ -10,7 +10,7 @@ const AnswerButton = ({ children, onPress, disable, specificPress, bgc }) => {
 	};
 
 	return (
-		<View style={styles.outerStyle}>
+		<View style={[styles.outerStyle, disable && { opacity: 0.5 }]}>
 			<Pressable
 				onPress={buttonHandler}
 				style={({ pressed }) => pressed && styles.pressed}
@@ -38,10 +38,14 @@ const styles = StyleSheet.create({
 	innerStyle: {
 		height: 125,
 		padding: 10,
-		borderWidth: 2,
+		// borderWidth: 2,
 		justifyContent: "center",
 		borderRadius: "8%",
 		backgroundColor: "#cccccc",
+		shadowColor: "black",
+		shadowOffset: { width: 0, height: 2 },
+		shadowRadius: 1,
+		shadowOpacity: 0.5,
 	},
 
 	textStyle: {

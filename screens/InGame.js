@@ -230,8 +230,12 @@ const styles = StyleSheet.create({
 
 	buttonInnerContainer: {
 		backgroundColor: "#cccccc",
-		borderWidth: 2,
+		// borderWidth: 2,
 		borderRadius: "8%",
+		shadowColor: "black",
+		shadowOffset: { width: 0, height: 2 },
+		shadowRadius: 1,
+		shadowOpacity: 0.5,
 	},
 
 	buttonText: {
