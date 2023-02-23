@@ -74,7 +74,12 @@ export default function App() {
 							component={InGame}
 							options={{
 								// title: `Round ${round} of ${endRound}`,
-								headerBackVisible: false,
+								// headerBackVisible: false,
+								headerBackTitle: "Main Menu",
+								headerTintColor: "black",
+								headerBackTitleStyle: {
+									fontFamily: "Lora-Regular",
+								},
 							}}
 						/>
 						<Stack.Screen
