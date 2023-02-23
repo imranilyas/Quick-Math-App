@@ -19,7 +19,7 @@ const SettingsButton = ({ onPress }) => {
 const styles = StyleSheet.create({
 	btncontainer: {
 		marginHorizontal: 20,
-		marginVertical: 5,
+		marginVertical: 20,
 		alignSelf: "flex-end",
 	},
 
@@ -28,7 +28,10 @@ const styles = StyleSheet.create({
 		padding: 5,
 		borderRadius: 1000000 / 2,
 		borderColor: "#585858",
-		borderWidth: 1.5,
+		shadowColor: "black",
+		shadowOffset: { width: 0, height: 2 },
+		shadowRadius: 1,
+		shadowOpacity: 0.5,
 	},
 
 	pressed: {

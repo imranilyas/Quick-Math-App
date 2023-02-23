@@ -1,4 +1,4 @@
-import { StyleSheet, FlatList, Text, Image, View } from "react-native";
+import { StyleSheet, FlatList, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { useNavigation } from "@react-navigation/native";
@@ -29,12 +29,14 @@ const Home = () => {
 			<SettingsButton onPress={settingsHandler} />
 
 			<Text style={styles.title}>Quick Maths</Text>
-			{/* <View style={styles.iconContainer}>
-				<Image
-					source={require("../assets/math-icon.png")}
-					style={styles.icon}
-				/>
-			</View> */}
+			<Text
+				style={[
+					styles.title,
+					{ fontSize: 30, marginTop: 40, marginVertical: 0 },
+				]}
+			>
+				+ - x ÷
+			</Text>
 			<FlatList
 				contentContainerStyle={{
 					flex: 1,
@@ -66,6 +68,7 @@ const styles = StyleSheet.create({
 		fontSize: 48,
 		textAlign: "center",
 		fontFamily: "Lora-Regular",
+		marginVertical: 40,
 	},
 	iconContainer: {
 		// backgroundColor: "transparent",
@@ -85,7 +88,6 @@ const styles = StyleSheet.create({
 	listInnerContainer: {
 		backgroundColor: "#cccccc",
 		borderRadius: 10,
-		// borderWidth: 2,
 		shadowColor: "black",
 		shadowOffset: { width: 0, height: 2 },
 		shadowRadius: 1,
