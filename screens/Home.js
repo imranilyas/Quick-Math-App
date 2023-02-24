@@ -1,7 +1,9 @@
 import { StyleSheet, FlatList, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-
 import { useNavigation } from "@react-navigation/native";
+import { useDispatch } from "react-redux";
+
+import { resetRound } from "../redux/settingsSlice";
 
 import SettingsButton from "../components/SettingsButton";
 import GameSelectButton from "../components/GameSelectButton";
@@ -15,12 +17,14 @@ const choiceArr = [
 
 const Home = () => {
 	const navigation = useNavigation();
+	const dispatch = useDispatch();
 
 	const settingsHandler = () => {
 		navigation.navigate("SettingsScreen");
 	};
 
 	const gameHandler = (val) => {
+		dispatch(resetRound());
 		navigation.navigate("InGameScreen", { gameType: val });
 	};
 
