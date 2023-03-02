@@ -6,7 +6,7 @@ const AnswerButton = ({ children, onPress, disable, specificPress, bgc }) => {
 
 	const buttonHandler = () => {
 		setPress(true);
-		onPress();
+		onPress(children);
 	};
 
 	return (

@@ -97,8 +97,11 @@ const InGame = () => {
 		});
 	}, [round, endRound, navigation]);
 
-	const buttonPress = () => {
+	const buttonPress = (val) => {
 		setDisable(true);
+		const arr = express.split(`\n`);
+		const str = arr[0] + " " + arr[1] + " = " + val;
+		console.log(val === ans);
 		Animated.timing(shrinkValue).reset();
 	};
 
@@ -107,7 +110,6 @@ const InGame = () => {
 			setQuestionArr([]);
 			dispatch(incrementRound());
 		} else {
-			dispatch(resetRound());
 			navigation.navigate("EndGameScreen");
 		}
 	};
@@ -125,7 +127,6 @@ const InGame = () => {
 
 	useEffect(() => {
 		shrinkAnimation();
-		console.log("Shrink Animation");
 	}, [shrinkValue, round]);
 
 	return (
@@ -201,7 +202,6 @@ const styles = StyleSheet.create({
 	container: {
 		margin: 15,
 		flex: 1,
-		// justifyContent: "flex-end",
 	},
 
 	timerContainer: {
@@ -223,14 +223,10 @@ const styles = StyleSheet.create({
 	buttonContainer: {
 		marginVertical: 15,
 		marginHorizontal: "3%",
-		// borderRadius: 10000 / 2,
-		// alignSelf: "center",
-		// width: "88%",
 	},
 
 	buttonInnerContainer: {
 		backgroundColor: "#cccccc",
-		// borderWidth: 2,
 		borderRadius: "8%",
 		shadowColor: "black",
 		shadowOffset: { width: 0, height: 2 },
