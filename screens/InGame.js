@@ -2,7 +2,7 @@ import { View, StyleSheet, FlatList, Animated } from "react-native";
 import { useEffect, useLayoutEffect, useState, useRef } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { incrementRound, resetRound } from "../redux/settingsSlice";
+import { incrementRound, addExpression } from "../redux/settingsSlice";
 
 import { useNavigation, useRoute } from "@react-navigation/native";
 
@@ -97,11 +97,13 @@ const InGame = () => {
 		});
 	}, [round, endRound, navigation]);
 
-	const buttonPress = (val) => {
+	const buttonPress = (element) => {
 		setDisable(true);
+		console.log(element);
 		const arr = express.split(`\n`);
-		const str = arr[0] + " " + arr[1] + " = " + val;
-		console.log(val === ans);
+		const str = arr[0] + " " + arr[1] + " = " + element;
+		console.log(element === ans);
+		dispatch(addExpression({ expression: str, choice: element === ans }));
 		Animated.timing(shrinkValue).reset();
 	};
 

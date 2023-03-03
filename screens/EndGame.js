@@ -1,9 +1,13 @@
 import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
 import { View, Text, StyleSheet } from "react-native";
 import GameSelectButton from "../components/GameSelectButton";
 
 const EndGame = () => {
 	const navigation = useNavigation();
+	const expressions = useSelector((state) => state.settings.expressions);
+	console.log(expressions);
+	console.log(expressions.length);
 	const returnHandler = () => {
 		navigation.navigate("HomeScreen");
 	};
