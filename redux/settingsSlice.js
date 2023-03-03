@@ -7,7 +7,7 @@ const settingsSlice = createSlice({
 		darkMode: false,
 		rounds: 10,
 		roundProgress: 1,
-		expressions: [{}],
+		expressions: [],
 	},
 	reducers: {
 		incrementRound: (state) => {
@@ -16,7 +16,7 @@ const settingsSlice = createSlice({
 
 		resetRound: (state) => {
 			state.roundProgress = 1;
-			state.expressions = [{}];
+			state.expressions = [];
 		},
 
 		setRounds: (state, action) => {
