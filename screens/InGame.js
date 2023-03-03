@@ -140,7 +140,7 @@ const InGame = () => {
 					colors={["#009e37", "#fff200", "#ff9900", "#ca0000"]}
 					colorsTime={[10, 5, 3, 0]}
 					size={80}
-					onComplete={buttonPress}
+					onComplete={buttonPress.bind(this, "?")}
 					key={round}
 				>
 					{({ remainingTime }) => (

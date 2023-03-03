@@ -7,7 +7,6 @@ const EndGame = () => {
 	const navigation = useNavigation();
 	const expressions = useSelector((state) => state.settings.expressions);
 	console.log(expressions);
-	console.log(expressions.length);
 	const returnHandler = () => {
 		navigation.navigate("HomeScreen");
 	};
